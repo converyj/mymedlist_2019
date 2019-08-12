@@ -1,0 +1,72 @@
+/*hamburger menu*/
+.hamburger_btn { 
+	display: none;
+}
+
+.nav ul {
+	list-style: none; 
+}
+.nav li {
+	list-style: none; 
+	float: left;
+	display: inline-block;
+	padding: 5px;
+}
+
+#banner {
+	height: 31em;
+}
+
+#features {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 50% 50%; 
+	grid-auto-rows: minmax(130px, auto);
+}
+
+#features img {
+	border-radius:15px;
+}
+
+#tracking {
+	grid-column: 1 / span 2;
+}
+
+#tracking img {
+	grid-column: 2 / 2;
+	grid-row: 1 / 1;
+	width: 30%;
+}
+
+#features #sharing {
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 2;
+}
+
+#sharing img {
+	grid-column: 2 / 2;
+	grid-row: 1 / 1;
+	width: 30%;
+}
+
+#menu {
+	display: grid;
+	width: 100%;
+	grid-auto-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: .5px;
+	text-align:center;
+}
+
+#two {
+	grid-column: 2 / 2; 
+}
+
+#three {
+	grid-row: 1 / 1;
+	grid-column: 3 / 3;
+}
+
+#four {
+	grid-row: 1 / 1;
+	grid-column: 4 / 4;
+}
