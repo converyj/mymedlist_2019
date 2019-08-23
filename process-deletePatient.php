@@ -6,7 +6,7 @@ session_start();
 $userid = $_SESSION['userid']; 
 $listid = $_GET['list']; 
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 // DELETE patient row from caregiverpatientlist
 $stmt = $pdo->prepare("

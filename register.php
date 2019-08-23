@@ -1,6 +1,6 @@
 <?php 
 
-include_once("mymedlist_dbconfig.php");
+include_once("../../mymedlist_dbconfig.php");
 
 // populate the role dropdown list with different roles (patient or caregiver)
 $stmt = $pdo->prepare("

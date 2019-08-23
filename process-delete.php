@@ -8,7 +8,7 @@ $listid = $_SESSION['listid'];
 $func = $_GET['func']; 
 $medid = $_GET['id']; 
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 // if user chose move to history, INSERT row to history
 if ($func == '1') {

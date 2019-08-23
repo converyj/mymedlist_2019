@@ -16,7 +16,7 @@ $lastName = $_SESSION['lastName'];
 $patientFirstName = $_SESSION['patientfName']; 
 $patientLastName = $_SESSION['patientlName']; 
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 
 // SELECT and save user's email to be able to send their medlist to them 

@@ -23,7 +23,7 @@ if(!empty($_POST['name']) && !empty($_POST['type']) && !empty($_POST['dosage']) 
 	exit();
 }
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 
 // UPDATE field inputs into medlist table 

@@ -15,7 +15,7 @@ $listid = $_SESSION['listid'];
 $patientFirstName = $_SESSION['patientfName']; 
 $patientLastName = $_SESSION['patientlName']; 
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 // select the user's medications from history and set the title of user
 $stmt = $pdo->prepare("

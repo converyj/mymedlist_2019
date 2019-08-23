@@ -16,7 +16,7 @@ if(!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['e
 	exit();
 }
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 
 // check if user is already in user table 

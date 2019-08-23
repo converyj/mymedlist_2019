@@ -8,7 +8,7 @@ if ($_SESSION["logged-in"] == false) {
 	exit();
 }
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 // populate the type dropdown list with different types of medication
 $type = $pdo->prepare("

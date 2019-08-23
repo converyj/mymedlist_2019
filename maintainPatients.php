@@ -16,7 +16,7 @@ $firstName = $_SESSION['firstName'];
 $lastName = $_SESSION['lastName'];
 
 
-include_once("mymedlist_dbconfig.php");
+include_once("../../mymedlist_dbconfig.php");
 
 // set title of caregiver 
 $title = $firstName . " " . $lastName . "'s Patients"; 

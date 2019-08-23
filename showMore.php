@@ -12,7 +12,7 @@ $listid = $_SESSION['listid'];
 $medid = $_GET['id']; 
 $func = $_GET['func'];
 
-include_once("mymedlist_dbconfig.php");	
+include_once("../../mymedlist_dbconfig.php");	
 
 
 // from displayList
