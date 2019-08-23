@@ -1,10 +1,6 @@
 <?php 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");
 
 // populate the role dropdown list with different roles (patient or caregiver)
 $stmt = $pdo->prepare("
@@ -30,36 +26,17 @@ $stmt->execute();
 	</head>
 	<body>
 		<div id="wrapper">
-			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						<li>
-							<a href="login.php">Sign In</a>
-						</li>
-						<li>
-							<a href="register.php">Register</a>
-						</li>						
-	 				</ul>
-				</nav>
+		<header>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
-			<main>
+			<main class="cred">
 				<h1>Sign In</h1>
-				<p>Sign In if you already have an account, if not <span><a href="register.php">register</a></span></p>
+				<p>Sign In if you already have an account, if not <span><a href="register.php">join</a></span> today!</p>
 				<form method='POST' action='process-login.php'>  
-					<label>Username:</label><input type='text' name='username'/>     
-					<label>Password:</label><input type='text' name='password'/>
+					<label>Email:</label><input type='email' name='email' required autofocus />     
+					<label>Password:</label><input type='text' name='password' required />
 					<label>Role:</label><select name="role">
 					<?php
 					while ($row = $stmt->fetch()) {
@@ -72,12 +49,11 @@ $stmt->execute();
 					<input type='submit' value="Sign In"/> 
 				</form>
 			</main>	
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
+			
+			<?php
+			include_once("footer.php");
+			?>
+			
 			<script src="js/script.js"></script>
 		</div>		
 	</body>

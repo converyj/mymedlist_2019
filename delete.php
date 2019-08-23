@@ -11,15 +11,11 @@ if ($_SESSION["logged-in"] == false) {
 $listid = $_SESSION['listid']; 
 $medid = $_GET['id']; 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");
 
 // select the record to delete
 $stmt = $pdo->prepare("
-						SELECT `name`, `dose`, `date`, `healthCareProvider`, `comment`, `instructions`, `f`.`value` AS frequency, `t`.`value` AS type 
+						SELECT `name`, `dose`, `units`, `date`, `healthCareProvider`, `comment`, `instructions`, `f`.`value` AS frequency, `t`.`value` AS type 
 						FROM `medlist`
 						LEFT OUTER JOIN `medvalue` f ON `medlist`.`frequency` = `f`.`code` 
 						LEFT OUTER JOIN `medvalue` t ON `medlist`.`type` = `t`.`code` 
@@ -48,42 +44,16 @@ $row = $stmt->fetch();
 	<body> 
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?> 
-					</ul>
-				</nav>
+				<?php
+				include_once("nav.php");
+				?> 
 			</header>
 			<main>
 				<h1>Delete Medication</h1>	
 				<p>Are you sure you want to delete this medication?</p>	
 				<p>Name: <input type='text' name='name' value="<?php echo($row["name"]);?>"/></p>
 				<p>Dosage: <input type='text' name='dosage' value="<?php echo($row["dose"]);?>"/></p>
+				<p>Units: <input type='text' name='units' value="<?php echo($row["units"]);?>"/></p>
 				<p class="side">Type: <input type='text' name='type' value="<?php echo($row["type"]);?>"/></p>
 				<p clss="side">Frequency: <input type='text' name='freq' value="<?php echo($row["frequency"]);?>"/></p>
 				<p>Presciption Data: <input type='date' name='date' value="<?php echo($row["date"]);?>"/></p> 	
@@ -93,13 +63,12 @@ $row = $stmt->fetch();
 				<a class="btn" href="process-delete.php?func=1&id=<?php echo($medid); ?>">Move to History</a>
 				<a class="btn" href="process-delete.php?func=2&id=<?php echo($medid); ?>">Move to Trash</a>
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
+
+		<?php
+		include_once("footer.php");
+		?>
+		
 		<script src="js/script.js"></script>
 	</body>
 </html>

@@ -15,11 +15,8 @@ $userid = $_SESSION['userid'];
 $firstName = $_SESSION['firstName'];
 $lastName = $_SESSION['lastName'];
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
 
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");
 
 // set title of caregiver 
 $title = $firstName . " " . $lastName . "'s Patients"; 
@@ -51,36 +48,9 @@ $stmt->execute();
 	<body>
 		<div id="wrapper"> 
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu2.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?> 
-					</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
 			<main>
 				<h1><?php echo($title); ?></h1>
@@ -117,13 +87,12 @@ $stmt->execute();
 				<a class="btn" href="menu2.php">Back</a>
 				<a class="btn" href="patients.php">Add</a>
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
+		
+		<?php
+		include_once("footer.php");
+		?>
+		
 		<script src="js/script.js"></script>
 		<script src="js/filter.js"></script>
 	</body>

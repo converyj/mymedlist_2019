@@ -11,15 +11,11 @@ if ($_SESSION["logged-in"] == false) {
 $listid = $_SESSION['listid']; 
 $medid = $_GET["id"]; 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");	
 
 // select the record to edit
 $stmt = $pdo->prepare("
-						SELECT `name`, `dose`, `date`, `healthCareProvider`, `comment`, `instructions`, `f`.`value` AS frequency, `t`.`value` AS type 
+						SELECT `name`, `dose`, `units`, `date`, `healthCareProvider`, `comment`, `instructions`, `f`.`value` AS frequency, `t`.`value` AS type 
 						FROM `medlist`
 						LEFT OUTER JOIN `medvalue` f ON `medlist`.`frequency` = `f`.`code` 
 						LEFT OUTER JOIN `medvalue` t ON `medlist`.`type` = `t`.`code` 
@@ -64,36 +60,9 @@ $freq->execute();
 	<body> 
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?> 
-					</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
 			<main>
 				<form action="process-update.php" method="POST">  
@@ -101,8 +70,10 @@ $freq->execute();
 					<input type="hidden" value="<?php echo($medid);?>" name="id"/>
 					<label for="name">Name:</label>
 					<input type='text' id="name" name='name' value="<?php echo($row1["name"]); ?>"/>
+					<label for="units">Units:</label>
+					<input type='text' id="units" name='units' value="<?php echo($row1["units"]); ?>"/>
 					<label for="dosage">Dosage:</label>
-					<input type='text' id="dosage" name='dosage' value="<?php echo($row1["dose"]); ?>"/>	
+					<input type='text' id="dosage" name='dosage' value="<?php echo($row1["dose"]); ?>"/>
 					<label class="side" for="type">Type:</label>
 					<select id="type" class="side" name='type'>
 					<?php
@@ -135,13 +106,12 @@ $freq->execute();
 					<input type='submit' value="Update" /> 
 				</form>
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
+		
+		<?php
+		include_once("footer.php");
+		?>
+		
 		<script src="js/script.js"></script>
 	</body>
 </html>

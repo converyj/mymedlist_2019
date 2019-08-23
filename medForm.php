@@ -8,11 +8,7 @@ if ($_SESSION["logged-in"] == false) {
 	exit();
 }
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");	
 
 // populate the type dropdown list with different types of medication
 $type = $pdo->prepare("
@@ -48,45 +44,20 @@ $stmt->execute();
 	<body>
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?>  
-					</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
 			<main>
 				<form action="process-insert.php" method="POST">  
 					<h1>Add Medication</h1>
 					<p>Fill out this form to add to your medication list</p>		
 					<label for="name">Name:</label>
-					<input type='text' id="name" name='name'/>
+					<input type='text' id="name" name='name' required autofocus />
+					<label for="units">Units:</label>
+					<input type='text' id="units" name='units' required />
 					<label for="dosage">Dosage:</label>
-					<input type='text' id="dosage" name='dosage'/>	
+					<input type='text' id="dosage" name='dosage' required />	
 					<label class="side" for="type">Type:</label>
 					<select id="type" class="side" name='type'>
 					<?php
@@ -111,22 +82,21 @@ $stmt->execute();
 					<label for="date">Presciption Date:</label>
 					<input id="date" type='date' id="date" name='date' />
 					<label for='provider'>Health Care Provider:</label>
-					<input type='text' id="provider" name='provider'/>
+					<input type='text' id="provider" name='provider' required />
 					<label for="comment">Comments:</label>
-					<textarea id="comment" name='comment' cols="100"></textarea>
+					<textarea id="comment" name='comment' cols="100" required></textarea>
 					<label for="instructions">Instructions:</label>
-					<textarea id="instructions" name='instruction' cols="100"></textarea>
+					<textarea id="instructions" name='instruction' cols="100" required></textarea>
 					<input type='submit' value="Add" /> 
 					<a class="btn" href="menu.php">Back</a>
 				</form>	
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
+		
+		<?php
+		include_once("footer.php");
+		?>
+		
 		<script src="js/script.js"></script>
 		<script src="js/date.js"></script>
 	</body>

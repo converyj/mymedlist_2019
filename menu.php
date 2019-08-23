@@ -37,36 +37,9 @@ $role = $_SESSION['role'];
 	<body>
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?> 
-					</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
 			<main>
 				<h1>Hello, <?php echo($firstName . " " . $lastName); ?></h1>
@@ -95,13 +68,12 @@ $role = $_SESSION['role'];
 					}
 					?>
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
+		
+		<?php
+		include_once("footer.php");
+		?>
+		
 		<script src=js/script.js></script>
 	</body>
 </html>

@@ -15,15 +15,11 @@ $listid = $_SESSION['listid'];
 $patientFirstName = $_SESSION['patientfName']; 
 $patientLastName = $_SESSION['patientlName']; 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");	
 
 // select the user's medications from history and set the title of user
 $stmt = $pdo->prepare("
-						SELECT `medid`, `name`, `dose`, `date`, `f`.`value` AS frequency, `t`.`value` AS type 
+						SELECT `medid`, `name`, `dose`, `units`, `date`, `f`.`value` AS frequency, `t`.`value` AS type 
 						FROM `history`
 						LEFT OUTER JOIN `medvalue` f ON `history`.`frequency` = `f`.`code` 
 						LEFT OUTER JOIN `medvalue` t ON `history`.`type` = `t`.`code` 
@@ -52,36 +48,9 @@ $title = $patientFirstName . " " . $patientLastName . "'s Medication History";
 	<body> 
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?> 
-					</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
 			<main>
 				<h1><?php echo($title); ?></h1>
@@ -89,6 +58,7 @@ $title = $patientFirstName . " " . $patientLastName . "'s Medication History";
 				<table id="myList">
 					<tr>
 						<th>Name</th>
+						<th>Units</th>
 						<th>Dosage</th>
 						<th>Frequency</th>
 						<th>Type</th>
@@ -101,11 +71,12 @@ $title = $patientFirstName . " " . $patientLastName . "'s Medication History";
 						$numRows++;
 					?>		
 						<tr>
-							<td><?php echo($row['name']);?></td>
-							<td><?php echo($row['dose']);?></td>
-							<td><?php echo($row['frequency']);?></td>
-							<td><?php echo($row['type']);?></td>
-							<td><?php echo($row['date']);?></td>
+							<td data-label="Name"><?php echo($row['name']);?></td>
+							<td data-label="Units"><?php echo($row['units']);?></td>
+							<td data-label="Dosage"><?php echo($row['dose']);?></td>
+							<td data-label="Frequency"><?php echo($row['frequency']);?></td>
+							<td data-label="Type"><?php echo($row['type']);?></td>
+							<td data-label="Prescription"><?php echo($row['date']);?></td>
 							<td><span><a href="showMore.php?func=2&id=<?php echo($row['medid'])?>">More</a></span></td>
 						</tr>
 					<?php 
@@ -120,15 +91,18 @@ $title = $patientFirstName . " " . $patientLastName . "'s Medication History";
 					?>
 				</table>
 				<a class="btn" href="displayList.php">Back To List</a>
+				<span><a href="#" onclick="pdf();return false;">Download PDF Version</a><span>
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
+		
+		<?php
+		include_once("footer.php");
+		?>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
 		<script src="js/script.js"></script>
 		<script src="js/filter.js"></script>
+		<script src="js/email.js"></script>
 	</body>
 </html>
