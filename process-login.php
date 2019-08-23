@@ -12,7 +12,7 @@ if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['role'
 	exit();
 }
 
-include_once("mymedlist_dbconfig.php");
+include_once("../../mymedlist_dbconfig.php");
 
 // check if user exists in the user table
 $stmt = $pdo->prepare("
