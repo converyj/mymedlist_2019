@@ -11,7 +11,7 @@ if ($_SESSION["logged-in"] == false) {
 $listid = $_SESSION['listid']; 
 $medid = $_GET['id']; 
 
-include_once("mymedlist_dbconfig.php");
+include_once("../../mymedlist_dbconfig.php");
 
 // select the record to delete
 $stmt = $pdo->prepare("

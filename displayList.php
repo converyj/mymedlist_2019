@@ -32,7 +32,7 @@ $lastName = $_SESSION['lastName'];
 $patientFirstName = $_SESSION['patientfName']; 
 $patientLastName = $_SESSION['patientlName']; 
 
-include('mymedlist_dbconfig.php');
+include('../../mymedlist_dbconfig.php');
 
 // if user is patient set title and get list, otherwise display user's name of caregiver
 $title = $patientFirstName . " " . $patientLastName . "'s Medication List"; 
