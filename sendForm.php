@@ -16,11 +16,8 @@ $lastName = $_SESSION['lastName'];
 $patientFirstName = $_SESSION['patientfName']; 
 $patientLastName = $_SESSION['patientlName']; 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
+include_once("mymedlist_dbconfig.php");	
 
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
 
 // SELECT and save user's email to be able to send their medlist to them 
 $stmt = $pdo->prepare("
@@ -43,7 +40,7 @@ $subject = "Medication List for" . " " . $patientFirstName . " " . $patientLastN
 
 // select user's medications ordering by type 
 $stmt = $pdo->prepare("
-						SELECT `name`, `dose`, `date`, `f`.`value` AS frequency, `t`.`value` AS type 
+						SELECT `name`, `dose`, `units`, `date`, `f`.`value` AS frequency, `t`.`value` AS type 
 						FROM `medlist`
 						LEFT OUTER JOIN `medvalue` f ON `medlist`.`frequency` = `f`.`code` 
 						LEFT OUTER JOIN `medvalue` t ON `medlist`.`type` = `t`.`code` 
@@ -62,6 +59,7 @@ $stmt->execute();
 		<link rel="stylesheet" type="text/css" href="css/main.css">
 		<link rel="stylesheet" media="screen and (min-width:768px)" href="css/tablet.css">
 		<link rel="stylesheet" media="screen and (min-width:1024px)" href="css/desktop.css">
+		<link rel="stylesheet" type="text/css" media="print" href="css/print.css">
 		<link rel="shortcut icon" type="image/jpg" href="images/logo.jpg" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -69,36 +67,9 @@ $stmt->execute();
 	<body> 
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						
-						<!-- if already logged in, change navigation  -->
-						<?php 
-						if ($_SESSION["logged-in"] == true) {
-						?>
-							<li>
-								<a href="menu.php">Menu</a>
-							</li>
-							<li>
-								<a href="logout.php">Logout</a>
-							</li>
-						<?php 
-						}
-						?> 
-					</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
 			<main>
 				<div id="toPDF">
@@ -116,6 +87,7 @@ $stmt->execute();
 							
 								<tr>
 									<th>Name</th>
+									<th>Units</th>
 									<th>Dosage</th>
 									<th>Frequency</th>
 									<th>Prescription Date</th>
@@ -126,10 +98,11 @@ $stmt->execute();
 						$subtitle = $row['type'];		 
 						?>
 						<tr>
-							<td><?php echo($row['name']);?></td>
-							<td><?php echo($row['dose']);?></td>
-							<td><?php echo($row['frequency']);?></td>
-							<td><?php echo($row['date']);?></td>
+							<td data-label="Name"><?php echo($row['name']);?></td>
+							<td data-label="Units"><?php echo($row['units']);?></td>
+							<td data-label="Dosage"><?php echo($row['dose']);?></td>
+							<td data-label="Frequency"><?php echo($row['frequency']);?></td>
+							<td data-label="Prescription Date"><?php echo($row['date']);?></td>
 						</tr>
 					<?php 
 					}
@@ -137,17 +110,22 @@ $stmt->execute();
 				</table>
 			</div>
 				<a class="btn" href="displayList.php">Back</a>
-				<a class="btn" id="mail" onclick="mailTo('<?php echo($email); ?>', '<?php echo($subject); ?>');">Email</a>
+				<button class="btn" id="mail" onclick="mailTo('<?php echo($email); ?>', '<?php echo($subject); ?>');">Email</button>
 				<button id="print" class="btn">Print</button>
+				<!-- <button type="button" onclick="printJS('toPDF', 'html')"> 
+    Print PDF
+ </button> -->
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
 		</div>
-	<script src="js/script.js"></script>
-	<script src="js/print.js"></script>
+		
+		<?php
+		include_once("footer.php");
+		?>
+	
+		<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
+		<script src="js/script.js"></script>
+		<script src="js/print.js"></script>
+		<script src="js/email.js"></script>
 	</body>
 </html>
