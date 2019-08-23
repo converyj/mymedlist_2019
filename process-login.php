@@ -3,8 +3,8 @@
 session_start();
 
 // check if the inputs are set and not null, else redirect to login form
-if(!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['role'])) {
-	$username = $_POST['username'];
+if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['role'])) {
+	$email = $_POST['email'];
 	$password = $_POST['password'];
 	$role = $_POST['role'];
 } else {
@@ -12,16 +12,12 @@ if(!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['ro
 	exit();
 }
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");
 
 // check if user exists in the user table
 $stmt = $pdo->prepare("
 						SELECT * FROM `user` 
-						WHERE `user`.`username` = '$username' 
+						WHERE `user`.`email` = '$email' 
 						AND `user`.`password` = '$password' ");
 
 $stmt->execute();

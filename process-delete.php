@@ -8,16 +8,12 @@ $listid = $_SESSION['listid'];
 $func = $_GET['func']; 
 $medid = $_GET['id']; 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");	
 
 // if user chose move to history, INSERT row to history
 if ($func == '1') {
 	$stmt = $pdo->prepare("
-							INSERT INTO `history` (`listid`, `medid`, `name`, `dose`, `frequency`, `type`, `date`, `healthCareProvider`, `comment`, `instructions`, `timestamp`, `userid`)
+							INSERT INTO `history` (`listid`, `medid`, `name`, `dose`, `units`, `frequency`, `type`, `date`, `healthCareProvider`, `comment`, `instructions`, `timestamp`, `userid`)
 								SELECT *
 								FROM `medlist`
 								WHERE `medlist`.`listid` = $listid 

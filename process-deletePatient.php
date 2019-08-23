@@ -6,11 +6,7 @@ session_start();
 $userid = $_SESSION['userid']; 
 $listid = $_GET['list']; 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");	
 
 // DELETE patient row from caregiverpatientlist
 $stmt = $pdo->prepare("

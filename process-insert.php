@@ -7,10 +7,11 @@ $userid = $_SESSION['userid'];
 $listid = $_SESSION['listid'];
 
 // check if the inputs are set and not null, else redirect to medication form
-if(!empty($_POST['name']) && !empty($_POST['type']) && !empty($_POST['dosage']) && !empty($_POST['freq']) && !empty($_POST['date']) && !empty($_POST['provider']) && !empty($_POST['comment']) && !empty($_POST['instruction'])) {
+if(!empty($_POST['name']) && !empty($_POST['type']) && !empty($_POST['dosage']) && !empty($_POST['units']) && !empty($_POST['freq']) && !empty($_POST['date']) && !empty($_POST['provider']) && !empty($_POST['comment']) && !empty($_POST['instruction'])) {
 	$name = $_POST['name'];
 	$type = $_POST['type'];
 	$dose = $_POST['dosage'];
+	$units = $_POST['units'];
 	$frequency = $_POST['freq'];
 	$date = $_POST['date'];
 	$provider = $_POST['provider'];
@@ -21,17 +22,14 @@ if(!empty($_POST['name']) && !empty($_POST['type']) && !empty($_POST['dosage']) 
 	exit();
 }
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
+include_once("mymedlist_dbconfig.php");	
 
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
 
 // INSERT field inputs into medlist table 
 $stmt = $pdo->prepare("
 						INSERT INTO `medlist` 
-							(`listid`, `name`, `dose`, `frequency`, `type`, `date`, `healthCareProvider`, `comment`, `instructions`, `userid`)
-							VALUES ($listid, '$name', '$dose', '$frequency', '$type', '$date', '$provider', '$comments', '$instructions', $userid); ");
+							(`listid`, `name`, `dose`, `units`, `frequency`, `type`, `date`, `healthCareProvider`, `comment`, `instructions`, `userid`)
+							VALUES ($listid, '$name', '$dose', '$units', '$frequency', '$type', '$date', '$provider', '$comments', '$instructions', $userid); ");
 $i = $stmt->execute();
 
 // check if the insert was successful or not 

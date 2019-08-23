@@ -16,11 +16,8 @@ if(!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['e
 	exit();
 }
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
+include_once("mymedlist_dbconfig.php");	
 
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
 
 // check if patient exists in user table 
 $stmt = $pdo->prepare("
