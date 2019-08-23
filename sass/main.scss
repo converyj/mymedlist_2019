@@ -1,0 +1,432 @@
+@import 'colors.scss'; 
+
+* {
+	margin:0; 
+	padding: 0; 
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin-top: 74px; 
+	display: flex; 
+	flex-direction: column;
+	min-height: 100%;
+	font-size: 20px;
+	font-family: 'Roboto', monospace; 
+	background-color: $white;
+	color: $gray;
+	box-sizing: border-box; 
+	// padding-bottom: 5em;
+}
+
+#wrapper {
+	// @include container();
+	margin: 10px;
+	overflow: hidden;
+	padding: 5px;
+	position: relative;
+}
+
+// main {
+// 	padding-bottom: 25%;
+// }
+
+p {
+	margin: 5px 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto; 
+	display: block;
+}
+
+h1, h2 {
+	font-size: 24px;
+	margin: 6px 0;
+	padding: 10px;
+	position: relative;
+	z-index: 5;
+}
+
+h3 { 
+	font-size: 24px;
+}
+
+header {
+	position: fixed;
+	background: #fff;
+	width: 100%;
+	border-bottom: 4px solid $light-brown;
+	z-index: 100;
+	top: 0;
+	left: 0;
+}
+
+.logo {
+	width: 200px;
+}
+
+#banner {
+	width: 100vw;
+	max-width: initial;
+	object-fit: cover; 
+	background: url("../images/banner.jpg") no-repeat center;
+	height: 15em;
+	background-size: cover; 
+	margin: 1em calc(50% - 50vw);
+}
+
+li {
+	display: none;
+	list-style: none; 
+	padding: 5px;
+}
+
+a {
+	text-decoration: none;
+	color: #666666;
+	cursor: pointer;
+}
+
+span a {
+	text-decoration: underline; 
+	color: #0666F6;
+}
+
+a:hover,
+a:focus {
+	color: $hover;
+}
+
+/*hamburger menu*/
+.hamburger_btn { 
+	position: absolute;
+	top: 0;
+	left: 80%;
+	background: transparent;
+	border: 0;
+	z-index: 100;
+}
+
+.hamburger_btn:hover, 
+.hamburger_btn:focus {
+	cursor: pointer;
+}
+
+.responsive li {
+	display: block;
+	text-align: center;
+	padding: 5px; 
+
+}
+
+.responsive a { 
+	display: block;
+	width: 100%;
+}
+
+#desc {
+	text-align: center;
+}
+
+#desc p {
+	padding: 5px;
+	width: 100%;
+	margin: auto;
+}
+
+#features {
+	padding: 20px;
+	margin: 10px;
+}
+
+/* #features {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 50%; 
+	grid-auto-rows: minmax(130px, auto);
+}
+
+#features #tracking {
+	grid-column: 1 / span 2;
+}
+
+#features #sharing {
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 2;
+} */
+
+#tracking .heading,
+#sharing .heading {
+	color: #7da3bb;
+}
+
+#sharing {
+	margin-top: 20px;
+}
+
+.subtitle {
+	font-weight: bold; 
+	font-size: .9rem;
+}
+
+.subtitle, 
+.heading {
+	text-transform: uppercase;
+}
+
+#tracking 
+.separator {
+	background-color: #D9EFFD;
+	width: 5em;
+	height: 5px;
+	margin-bottom: 10px;
+}
+
+#sharing 
+.separator {
+	background-color: #E7DED6;
+	width: 5em;
+	height: 5px;
+	margin-bottom: 10px;
+}
+
+#features img,
+#tracking img {
+	margin-top: 10px;
+	box-shadow: 0 0 10px $gray;
+	margin: 1em 0;
+}
+
+.cred {
+	@include container();
+}
+
+
+label {
+	display: block;
+	margin-bottom: 1em;
+	color: #606060;
+	font-weight: 900; }
+
+input[type=text], 
+[type=email], 
+[type=date], 
+[type=search], 
+select, 
+textarea {
+	box-sizing: border-box;
+	display: block;
+  	padding: .75em;
+ 	width: 100%;
+ 	margin: 5px 0;
+ 	padding: 5px 0;
+ 	font-family: Roboto, monospace;
+ 	color: $gray;
+ 	font-size: 20px;
+ }
+
+input[type=submit], button {
+	box-sizing: border-box;
+	background-color: #D9EFFD;
+	margin: 10px auto;
+	padding: 5px 25px;
+	border: 1px solid #707070;
+	text-align: center; 
+	border-radius: 25px;
+	font-family: Roboto, monospace;
+	color: $gray;
+	font-size: 20px;
+}
+
+
+.btn {
+	background-color: #D9EFFD;
+	padding: 5px 25px;
+	border: 1px solid #707070;
+	text-align: center; 
+	border-radius: 25px;
+	cursor: pointer; 
+	display: inline-flex;
+}
+
+table {
+	box-sizing: border-box;
+	margin: 2% 0;
+	width: 100%;
+	border-collapse: collapse; 
+
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+th, td {
+	text-align: center;
+	padding: 12px;
+}
+
+#menu img {
+	width: 50%;
+	height: 50%;
+}
+#menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+} 
+
+// #menu {
+// 	display: grid;
+// 	/* width: 100%; */
+// 	grid-template-columns: repeat(auto-fit, minmax(125px, auto));
+// 	/* grid-gap: .5px;
+// 	align-items: end;
+// 	text-align:center; */
+// }
+
+#menu div {
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center
+}
+
+#one {
+	grid-column: span 1;
+}
+
+#two {
+	grid-column: span 1;
+}
+
+// #menu img {
+// 	width: 100%;
+// 	/* border-radius: 50%; */
+// }
+
+#three {
+	grid-column: span 1;
+}
+
+#four {
+	grid-column: span 1;
+}
+
+#myList tr:nth-child(even) {
+	background-color: rgba(188, 224, 253, .1);
+} 
+
+#myList tr:nth-child(odd) {
+	background-color: rgba(188, 224, 253, .4);
+} 
+
+span {
+	padding: 0 .1em;
+}
+
+@media only screen and (min-width: 20em) and (max-width: 64em) {
+	/* Force table to not be like tables anymore */
+	#myList > tr, th, td {
+		display: block; 
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#myList th {
+		position: absolute; 
+		top: -9999px;
+		left: -9999px;
+	}
+
+	#myList tr {
+		margin: 1rem 0;
+	}
+
+	#myList td, tr {
+		text-align: left;
+		padding: .5rem 1rem;
+
+	}
+
+	#myList td {
+		/* Behave  like a "row" */
+		border: none; 
+		border-bottom: 1px solid #eee; 
+		position: relative; 
+		padding-left: 50%;
+	}
+
+	#myList td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+
+	td:nth-of-type(1):before { content: "Name"; }
+	td:nth-of-type(2):before { content: "Units"; }
+	td:nth-of-type(3):before { content: "Dosage"; }
+	td:nth-of-type(4):before { content: "Frequency"; }
+	td:nth-of-type(5):before { content: "Type"; }
+	td:nth-of-type(5):before { content: "Prescription Date"; }
+	td:nth-of-type(6):before { content: "Action"; }
+}
+
+/* Column system
+==============================
+*/
+[class^="col-"] {
+    margin-top: 1em;
+}
+
+[class^="col-"]:first-of-type {
+    margin-top: 0;
+}
+
+.col-1 {
+    width: 22%;
+    float: left; 
+    line-height: 2;
+}
+
+footer {
+	// width: 100%;
+	margin-top: auto;
+	// margin-top: 21px;
+	padding: 1em 10px;
+	background-color: #E7DED6;
+	text-align: left;
+	// bottom: 0;
+
+	ul {
+		display: inline-block;
+	}
+
+	li {
+		display: block; 
+		float: left;
+	}
+
+	p {
+		clear: both;
+		display: block;
+	}
+}
+
+
+
+
+
+

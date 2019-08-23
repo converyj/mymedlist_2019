@@ -1,0 +1,13 @@
+$light-blue: #BCE0FD;
+$gray: #666666;
+$blue: #2D87EF; 
+$light-brown: #E7DED6; 
+$white: #FDFDFD;
+$hover: #363636;
+
+@mixin container() {
+    width: 90%;
+    max-width: 55em;
+    padding: 3em 0;
+    margin: 0 auto;
+}

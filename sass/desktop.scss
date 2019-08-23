@@ -1,0 +1,107 @@
+@import 'colors.scss'; 
+
+/*hamburger menu*/
+.hamburger_btn { 
+	display: none;
+}
+
+nav {
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center;
+	padding-right: 20px;
+
+}
+
+.nav li {
+	list-style: none; 
+	display: inline-block;
+	padding: 5px;
+}
+
+#banner {
+	height: 31em;
+}
+
+#desc p {
+	max-width: 70%;
+
+}
+
+/* #features {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 50% 50%; 
+	grid-auto-rows: minmax(130px, auto);
+} */
+
+#features img,
+#tracking img  {
+	width: 50%;
+	/* border-radius:15px; */
+}
+
+/* #tracking {
+	grid-column: 1 / span 2;
+}
+
+#tracking img {
+	grid-column: 2 / 2;
+	grid-row: 1 / 1;
+	width: 30%;
+} */
+
+/* #features #sharing {
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 2;
+} */
+
+/* #sharing img {
+	grid-column: 2 / 2;
+	grid-row: 1 / 1;
+	width: 30%;
+} */
+
+/* #myList {
+	border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+} */
+
+@supports (display: grid) {
+	.register {
+		display: grid; 
+		column-gap: .5em;
+		grid-template-areas: "fname   lname"
+							 "email  pass"
+							 "role   ."
+							 "button      button" 
+	}
+}
+
+.fname  {
+	grid-area: fname; 
+}
+
+.lname{
+	grid-area: lname;
+}
+
+.email {
+	grid-area: email;
+}
+
+.pass {
+	grid-area: pass;
+}
+
+.role {
+	grid-area: role;
+}
+
+.button {
+	grid-area: button;
+}
