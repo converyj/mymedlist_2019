@@ -1,0 +1,9 @@
+body {
+  -webkit-print-color-adjust: exact;
+}
+
+h2 {
+  border-bottom: 2px solid black;
+}
+
+/*# sourceMappingURL=print.css.map */
