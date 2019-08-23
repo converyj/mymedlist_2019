@@ -1,10 +1,6 @@
 <?php 
 
-$dsn = "mysql:host=localhost;dbname=converyj_mymedlist;charset=utf8mb4";
-$dbusername = "converyj";
-$dbpassword = "HUgT86Fga#97";
-
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+include_once("mymedlist_dbconfig.php");
 
 // populate the role dropdown list with different roles (patient or caregiver)
 $stmt = $pdo->prepare("
@@ -30,39 +26,19 @@ $stmt->execute();
 	<body>
 		<div id="wrapper">
 			<header>
-				<a href="home.php">
-					<img class="logo" src="images/logo.jpg" alt="mymedlist" />
-				</a>
-				<nav id="navBar" class="nav">
-					<a href="#navBar" class="hamburger_btn" id="icon">
-						<span class="fa fa-bars"></span>
-					</a>
-					<ul>
-						<li>
-							<a href="home.php">Home</a>
-						</li>
-						<li>
-							<a href="contact.php">Contact</a>
-						</li>
-						<li>
-							<a href="login.php">Sign In</a>
-						</li>
-						<li>
-							<a href="register.php">Register</a>
-						</li>						
-	 				</ul>
-				</nav>
+				<?php 
+				include_once("nav.php");	
+				?>
 			</header>
-			<main>
-				<h1>Register</h1>
-				<p>Create an account if new, if not <span><a href="login.php">sign in</a></span></p>
-					<form method='POST' action='process-registration.php'>     
-						<label>First Name:</label><input type='text' name='firstName'/>     
-						<label>Last Name:</label><input type='text' name='lastName'/>   
-						<label>Email:</label><input type='email' name='email'/> 
-						<label>Username:</label><input type='text' name='username'/> 
-						<label>Password:</label><input type='text' name='password'/>  
-						<label>Role:</label><select name="role">
+			<main class="cred">
+				<h1>Join</h1>
+				<p>Create an account if you are a new user</p>
+					<form class="register" method='POST' action='process-registration.php'>     
+						<label>First Name:<input class="fname" type='text' name='firstName' required autofocus />  </label>   
+						<label>Last Name:<input class="lname" type='text' name='lastName' required /> </label>  
+						<label>Email:<input class="email" type='email' name='email' required /> </label>
+						<label>Password:<input class="pass" type='text' name='password' required /> </label> 
+						<label>Role:<select class="role" name="role"></label>
 						<?php
 						while ($row = $stmt->fetch()) {
 						?>
@@ -71,15 +47,14 @@ $stmt->execute();
 						} 
 						?>
 						</select>
-						<input type='submit' value="Sign In" /> 
+						<input class="button" type='submit' value="Join" /> 
 					</form>		
 			</main>
-			<footer>
-				<ul>
-					<li><a href="#">Contact Us</a></li>
-				</ul>
-				<p>&copy; Copyright 2018 | All rights</p>
-			</footer>
+			
+			<?php
+			include_once("footer.php");
+			?>
+
 			<script src="js/script.js"></script>
 		</div>			
 	</body>
