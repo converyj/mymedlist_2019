@@ -45,7 +45,7 @@ function mailTo(email, subject) {
 	body += line; 
 	body += newLine;
 	body += newLine;
-	for (var i = 0; i < tdTags.length; i+=4) {
+	for (var i = 0; i < tdTags.length; i+=5) {
 		body += tdTags[i].innerHTML; 
 		body += newLine;
 	} 

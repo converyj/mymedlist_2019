@@ -375,13 +375,27 @@ span {
 		white-space: nowrap;
 	}
 
-	td:nth-of-type(1):before { content: "Name"; }
-	td:nth-of-type(2):before { content: "Units"; }
-	td:nth-of-type(3):before { content: "Dosage"; }
-	td:nth-of-type(4):before { content: "Frequency"; }
-	td:nth-of-type(5):before { content: "Type"; }
-	td:nth-of-type(5):before { content: "Prescription Date"; }
-	td:nth-of-type(6):before { content: "Action"; }
+	td:nth-of-type(1):before { 
+		content: attr(data-label);
+	 }
+	td:nth-of-type(2):before { 
+		content: attr(data-label);
+	 }
+	td:nth-of-type(3):before { 
+		content: attr(data-label);
+	 }
+	td:nth-of-type(4):before { 
+		content: attr(data-label);
+	 }
+	td:nth-of-type(5):before { 
+		content: attr(data-label);
+	 }
+	td:nth-of-type(6):before { 
+		content: attr(data-label);
+	 }
+	td:nth-of-type(7):before { 
+		content: attr(data-label);
+	 }
 }
 
 /* Column system

@@ -95,7 +95,7 @@ $stmt->execute();
 							<td data-label="Frequency"><?php echo($row['frequency']);?></td>
 							<td data-label="Type"><?php echo($row['type']);?></td>
 							<td data-label="Prescription Date"><?php echo($row['date']);?></td>
-							<td id="hidePDF"><span><a href="edit.php?id=<?php echo($row['medid']); ?>">Edit</a></span>
+							<td data-label="Action"><span><a href="edit.php?id=<?php echo($row['medid']); ?>">Edit</a></span>
 							<span><a href="delete.php?id=<?php echo($row['medid']); ?>">Delete</a></span>
 							<span><a href="showMore.php?func=1&id=<?php echo($row['medid']); ?>">More</a></span></td>
 						</tr>

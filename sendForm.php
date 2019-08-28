@@ -110,7 +110,7 @@ $stmt->execute();
 				</table>
 			</div>
 				<a class="btn" href="displayList.php">Back</a>
-				<button class="btn" id="mail" onclick="mailTo('<?php echo($email); ?>', '<?php echo($subject); ?>');">Email</button>
+				<a class="btn" target="_blank" id="mail" onclick="mailTo('<?php echo($email); ?>', '<?php echo($subject); ?>');">Email</a>
 				<button id="print" class="btn">Print</button>
 			</main>
 		</div>
