@@ -77,7 +77,7 @@ $title = $patientFirstName . " " . $patientLastName . "'s Medication History";
 							<td data-label="Frequency"><?php echo($row['frequency']);?></td>
 							<td data-label="Type"><?php echo($row['type']);?></td>
 							<td data-label="Prescription"><?php echo($row['date']);?></td>
-							<td><span><a href="showMore.php?func=2&id=<?php echo($row['medid'])?>">More</a></span></td>
+							<td data-label="Action"><span><a href="showMore.php?func=2&id=<?php echo($row['medid'])?>">More</a></span></td>
 						</tr>
 					<?php 
 					} 
