@@ -112,20 +112,14 @@ $stmt->execute();
 				<a class="btn" href="displayList.php">Back</a>
 				<button class="btn" id="mail" onclick="mailTo('<?php echo($email); ?>', '<?php echo($subject); ?>');">Email</button>
 				<button id="print" class="btn">Print</button>
-				<!-- <button type="button" onclick="printJS('toPDF', 'html')"> 
-    Print PDF
- </button> -->
 			</main>
 		</div>
 		
 		<?php
 		include_once("footer.php");
 		?>
-	
-		<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
+		
 		<script src="js/script.js"></script>
 		<script src="js/print.js"></script>
-		<script src="js/email.js"></script>
 	</body>
 </html>

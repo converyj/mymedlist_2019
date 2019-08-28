@@ -114,18 +114,12 @@ $stmt->execute();
 				<a class="btn" href="medForm.php">Add</a>
 				<a class="btn" href="medHistory.php">History</a>
 				<a class="btn" href="sendForm.php">Send</a>
-				<span><a href="#" onclick="pdf();return false;">Download PDF Version</a><span>
 			</main>
 		</div>
 
 		<?php
 		include_once("footer.php");
-		?>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
+		?>	
 		<script src="js/filter.js"></script>
-		<script src="js/email.js"></script>
 	</body>
 </html>

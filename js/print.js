@@ -26,35 +26,32 @@ function mailTo(email, subject) {
 	window.location.href="mailto:" + email + "?subject=" + subject + "&body=" + newBody;
 }
 
-// var doc = new jsPDF();
-// doc.fromHTML(list).html(), 15, 15,
-// 	'width': 150
-// function mailTo(email, subject) {
+function mailTo(email, subject) {
 	
-// 	var newLine = "%0D%0A"; 
-// 	var line = "%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F";
+	var newLine = "%0D%0A"; 
+	var line = "%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F%5F";
  
-// 	var thTags = document.getElementsByTagName("th");
-// 	var tdTags = document.getElementsByTagName("td");
+	var thTags = document.getElementsByTagName("th");
+	var tdTags = document.getElementsByTagName("td");
 
-// 	var body = ""; 
+	var body = ""; 
 
-// 	body += "Here is the latest list of medications.";
-// 	body += newLine;
-// 	body += newLine;
-// 	body += thTags[0].innerHTML; 
-// 	body += newLine;
-// 	body += line; 
-// 	body += line; 
-// 	body += newLine;
-// 	body += newLine;
-// 	for (var i = 0; i < tdTags.length; i+=4) {
-// 		body += tdTags[i].innerHTML; 
-// 		body += newLine;
-// 	} 
-// 	body += newLine;
-// 	body += newLine;
+	body += "Here is the latest list of medications.";
+	body += newLine;
+	body += newLine;
+	body += thTags[0].innerHTML; 
+	body += newLine;
+	body += line; 
+	body += line; 
+	body += newLine;
+	body += newLine;
+	for (var i = 0; i < tdTags.length; i+=4) {
+		body += tdTags[i].innerHTML; 
+		body += newLine;
+	} 
+	body += newLine;
+	body += newLine;
 
-// 	var aTag = document.getElementById("mail"); 
-// 	aTag.setAttribute("href", "mailto:" + email + "?subject=" + subject + "&body=" + body);
-// }
+	var aTag = document.getElementById("mail"); 
+	aTag.setAttribute("href", "mailto:" + email + "?subject=" + subject + "&body=" + body);
+}

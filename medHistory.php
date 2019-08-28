@@ -91,18 +91,13 @@ $title = $patientFirstName . " " . $patientLastName . "'s Medication History";
 					?>
 				</table>
 				<a class="btn" href="displayList.php">Back To List</a>
-				<span><a href="#" onclick="pdf();return false;">Download PDF Version</a><span>
 			</main>
 		</div>
 		
 		<?php
 		include_once("footer.php");
-		?>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
+		?>	
 		<script src="js/script.js"></script>
 		<script src="js/filter.js"></script>
-		<script src="js/email.js"></script>
 	</body>
 </html>
