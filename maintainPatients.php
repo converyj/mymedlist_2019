@@ -68,10 +68,10 @@ $stmt->execute();
 						$numRows++;
 					?>		
 						<tr>
-							<td><?php echo($row['firstName']);?></td>
-							<td><?php echo($row['lastName']);?></td>
-							<td><?php echo($row['email']);?></td>
-							<td><span><a class="deletePatient" href="process-deletePatient.php?list=<?php echo($row['listid']); ?>">Delete</a></span></td>
+							<td data-label="First Name"><?php echo($row['firstName']);?></td>
+							<td data-label="Last Name"><?php echo($row['lastName']);?></td>
+							<td data-label="Email"><?php echo($row['email']);?></td>
+							<td data-label="Actions"><span><a class="deletePatient" href="process-deletePatient.php?list=<?php echo($row['listid']); ?>">Delete</a></span></td>
 						</tr>
 					<?php 
 					}

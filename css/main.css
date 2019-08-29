@@ -232,6 +232,7 @@ input[type=submit], button {
   font-family: Roboto, monospace;
   color: #666666;
   font-size: 20px;
+  -webkit-appearance: none;
 }
 
 .btn {
@@ -242,6 +243,7 @@ input[type=submit], button {
   border-radius: 25px;
   cursor: pointer;
   display: inline-flex;
+  -webkit-appearance: none;
 }
 
 table {

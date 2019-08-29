@@ -216,7 +216,7 @@ label {
 input[type=text], 
 [type=email], 
 [type=date], 
-[type=search], 
+[type=search],
 select, 
 textarea {
 	box-sizing: border-box;
@@ -227,7 +227,8 @@ textarea {
  	padding: 5px 0;
  	font-family: Roboto, monospace;
  	color: $gray;
- 	font-size: 20px;
+	 font-size: 20px;
+	 
  }
 
 input[type=submit], button {
@@ -241,6 +242,7 @@ input[type=submit], button {
 	font-family: Roboto, monospace;
 	color: $gray;
 	font-size: 20px;
+	-webkit-appearance: none;
 }
 
 
@@ -252,6 +254,7 @@ input[type=submit], button {
 	border-radius: 25px;
 	cursor: pointer; 
 	display: inline-flex;
+	-webkit-appearance: none;
 }
 
 table {
